@@ -101,7 +101,6 @@ existing....
 <BR>
 
 
-
 ### Install and activate Add-in on Mac:
 
    1) Open ExportAsText.xlsm
@@ -117,7 +116,6 @@ existing....
   10) click the OK button to close the Add-ins window
 
 <BR>
-
 
 
 ### Add button to the Quick Access Toolbar
@@ -139,6 +137,7 @@ existing....
       I left it at the end, after Undo and Redo.
   11) click the OK button to close the Quick Access Toolbar window
 
+<BR>
 
 
 ### Add "Export as Text" button to the Ribbon
