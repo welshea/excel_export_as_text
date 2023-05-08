@@ -88,12 +88,11 @@ existing....
 
 ## INSTALLATION
 
-###PC:
+### PC:
 
    1) Open ExportAsText.xlsm
    2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
    3) click the Save button
-
    4) File -> Options (at the very bottom of screen) -> Add-ins
    5) click the Go button next to Manage: Excel Add-ins, near the bottom
    6) check the box to the left of Export as Text
@@ -102,19 +101,17 @@ existing....
 <BR>
 
 
-###Mac:
+### Mac:
 
    1) Open ExportAsText.xlsm
    2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
    3) click the Save button
-
    4) Tools -> Excel Add-ins...
    5) click the Browse button in the Add-ins window
    6) navigate to where you just saved ExportAsText.xlam,
       which should default to the same location as ExportAsText.xlsm
    7) select the ExportAsText.xlam file
    8) click the Open button
-
    9) check the box to the left of Export as Text
   10) click the OK button to close the Add-ins window
 
@@ -122,10 +119,9 @@ existing....
 
 
 
-##Add "Export as Text" button to the Ribbon
+## Add "Export as Text" button to the Ribbon
 
    1) File -> Options (very bottom of the window) -> Customize Ribbon
-
    2) [right panel] Customize the Ribbon: Main Tabs
    3) expand the [+] box to the left of Home if it isn't already [-] expanded
    4) select Home under Main Tabs
@@ -139,7 +135,6 @@ existing....
       relative to the other existing Home groups.
       I put it after the Clipboard and Font groups.
   11) select the Export (Custom) group you just created and/or moved around
-
   12) [left panel] Choose commands from: Macros
   13) select ExportAsText.xlam!ExportAsText.Exp...
   14) click the "Add > >" button to add it to the selected Export group
@@ -157,12 +152,10 @@ existing....
 
 
 
-##Add button to the Quick Access Toolbar
+## Add button to the Quick Access Toolbar
 
    1) File -> Options (very bottom of the window) -> Quick Access Toolbar
-
    2) [right panel] Customize Quick Access Toolbar: For all documents (default)
-
    3) [left  panel] Choose commands from: Macros
    4) select ExportAsText.xlam!ExportAsText.Exp...
    5) click the "Add > >" button to add it to the Quick Access Toolbar
@@ -182,7 +175,7 @@ existing....
 
 
 
-##Usage:
+## Usage:
 
 Click on either the newly added Ribbon or Quick Access Toolbar buttons
 to run the VBA script and export the current worksheet to either CSV or
