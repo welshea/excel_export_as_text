@@ -98,7 +98,6 @@ existing....
    6) check the box to the left of Export as Text
    7) click the OK button to close the Add-ins window
 
-<BR>
 
 ### Mac:
 
