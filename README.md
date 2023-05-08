@@ -100,7 +100,6 @@ existing....
 
 <BR>
 
-
 ### Mac:
 
    1) Open ExportAsText.xlsm
@@ -189,6 +188,7 @@ since there is no simple way to limit it to only .csv or .txt on Mac.
 
 ## AUTHORS
 
+<pre>
 Eric A. Welsh (Eric.Welsh@moffitt.org)
 
 See comments above/within vbspeed functions for their respective authors:
@@ -202,6 +202,7 @@ See comments above/within vbspeed functions for their respective authors:
 
   Replace:
     Jost Schwider (jost@schwider.de)
+</pre>
 
 <BR>
 
