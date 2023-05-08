@@ -88,7 +88,7 @@ existing....
 
 ## INSTALLATION
 
-### PC:
+### Install and activate Add-in on PC:
 
    1) Open ExportAsText.xlsm
    2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
@@ -98,8 +98,11 @@ existing....
    6) check the box to the left of Export as Text
    7) click the OK button to close the Add-ins window
 
+<BR>
 
-### Mac:
+
+
+### Install and activate Add-in on Mac:
 
    1) Open ExportAsText.xlsm
    2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
@@ -117,7 +120,28 @@ existing....
 
 
 
-## Add "Export as Text" button to the Ribbon
+### Add button to the Quick Access Toolbar
+
+   1) File -> Options (very bottom of the window) -> Quick Access Toolbar
+   2) [right panel] Customize Quick Access Toolbar: For all documents (default)
+   3) [left  panel] Choose commands from: Macros
+   4) select ExportAsText.xlam!ExportAsText.Exp...
+   5) click the "Add > >" button to add it to the Quick Access Toolbar
+   6) select the ExportAsText.xlam that you just added
+   7) click the Modify... button
+   8) choose whichever Symbol: icon you like --
+      I like the outline of a piece of paper with its top-right corner folded,
+      with a diagonally down arrow in the bottom-right corner
+      (10th icon from the left in my version of Excel)
+   9) click the OK button to close the Modify Button window
+  10) click and hold to drag the newly added "button" to where you want it
+      relative to the other existing "buttons" on the toolbar.
+      I left it at the end, after Undo and Redo.
+  11) click the OK button to close the Quick Access Toolbar window
+
+
+
+### Add "Export as Text" button to the Ribbon
 
    1) File -> Options (very bottom of the window) -> Customize Ribbon
    2) [right panel] Customize the Ribbon: Main Tabs
@@ -145,29 +169,6 @@ existing....
       (10th icon from the left in my version of Excel)
   19) click the OK button to close the Rename window
   20) click the OK button to close the Customize the Ribbon window
-
-<BR>
-
-
-
-## Add button to the Quick Access Toolbar
-
-   1) File -> Options (very bottom of the window) -> Quick Access Toolbar
-   2) [right panel] Customize Quick Access Toolbar: For all documents (default)
-   3) [left  panel] Choose commands from: Macros
-   4) select ExportAsText.xlam!ExportAsText.Exp...
-   5) click the "Add > >" button to add it to the Quick Access Toolbar
-   6) select the ExportAsText.xlam that you just added
-   7) click the Modify... button
-   8) choose whichever Symbol: icon you like --
-      I like the outline of a piece of paper with its top-right corner folded,
-      with a diagonally down arrow in the bottom-right corner
-      (10th icon from the left in my version of Excel)
-   9) click the OK button to close the Modify Button window
-  10) click and hold to drag the newly added "button" to where you want it
-      relative to the other existing "buttons" on the toolbar.
-      I left it at the end, after Undo and Redo.
-  11) click the OK button to close the Quick Access Toolbar window
 
 <BR>
 
