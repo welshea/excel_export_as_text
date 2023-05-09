@@ -101,6 +101,17 @@ existing....
 <BR>
 
 
+### De-activate Add-in on PC (so that you can install a newer version)
+
+   1) File -> Options (at the very bottom of screen) -> Add-ins
+   2) click the Go button next to Manage: Excel Add-ins, near the bottom
+   3) un-check the box to the left of Export as Text
+   4) click the OK button to close the Add-ins window
+   5) [follow installation instructions above to update with new version]
+
+<BR>
+
+
 ### Install and activate Add-in on Mac:
 
    1) Open ExportAsText.xlsm
@@ -114,17 +125,6 @@ existing....
    8) click the Open button
    9) check the box to the left of Export as Text
   10) click the OK button to close the Add-ins window
-
-<BR>
-
-
-### De-activate Add-in on PC (so that you can install a newer version)
-
-   1) File -> Options (at the very bottom of screen) -> Add-ins
-   2) click the Go button next to Manage: Excel Add-ins, near the bottom
-   3) un-check the box to the left of Export as Text
-   4) click the OK button to close the Add-ins window
-   5) [follow installation instructions above to update with new version]
 
 <BR>
 
