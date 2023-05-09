@@ -211,14 +211,14 @@ Eric A. Welsh (Eric.Welsh@moffitt.org)
 See comments above/within vbspeed functions for their respective authors:
 
   InStrRev, StrReverse:
-    Donald        (donald@xbeat.net)
+    Donald Lessau  (donald@xbeat.net)
 
   Join:
-    G.Beckman     (G.beckmann@NikoCity.de)
-    Keith         (kmatzen@ispchannel.com)
+    Guido Beckmann (G.beckmann@NikoCity.de)
+    Keith Matzen   (kmatzen@ispchannel.com)
 
   Replace:
-    Jost Schwider (jost@schwider.de)
+    Jost Schwider  (jost@schwider.de)
 </pre>
 
 <BR>
