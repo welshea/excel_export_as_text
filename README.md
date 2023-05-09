@@ -118,6 +118,28 @@ existing....
 <BR>
 
 
+### De-activate Add-in on PC (so that you can install a newer version)
+
+   1) File -> Options (at the very bottom of screen) -> Add-ins
+   2) click the Go button next to Manage: Excel Add-ins, near the bottom
+   3) un-check the box to the left of Export as Text
+   4) click the OK button to close the Add-ins window
+   5) [follow installation instructions above to update with new version]
+
+<BR>
+
+
+### De-activate Add-in on Mac (so that you can install a newer version)
+
+   1) Tools -> Excel Add-ins...
+   2) un-check the box to the left of Export as Text
+   3) click the OK button to close the Add-ins window
+   4) [follow installation instructions above to update with new version]
+
+<BR>
+
+
+
 ### Add button to the Quick Access Toolbar
 
    1) File -> Options (very bottom of the window) -> Quick Access Toolbar
