@@ -7,10 +7,11 @@ Dates are exported as "the one true date format", YYYY-MM-DD, and numbers are
 exported at full precision, rather than display precision.  Tab-delimited
 output does not contain any CSV-related escaping, which is both unnecessary
 and usually corrupting, that Excel Save As and Python csv.writer produce.
-<B>Tabs are escaped as \\\t in tab-delimited output, but are left as-is in CSV
-output (you have been warned)</B>.  Embedded end of line characters (CR, LF,
-CRLF) are escaped as the usual \\\r, \\\n, \\\r\\\n.  \\\ was chosen as the
-escape string, instead of \, due to \ and \\ appearing in Windows paths.
+<B>Tabs are escaped as \\\\\\t in tab-delimited output, but are left as-is in
+CSV output (you have been warned)</B>.  Embedded end of line characters
+(CR, LF, CRLF) are escaped as \\\\\\r, \\\\\\n, \\\\\\r\\\\\n.  \\\\\\ was
+chosen as the escape string, instead of \\, due to \\ and \\\\ appearing in
+Windows paths.
 
 <BR>
 
