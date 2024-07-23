@@ -201,6 +201,12 @@ tab-delimited text.  Mac users will need to select .csv or .txt from
 amongst all possible output types in the pop-up output file name requestor,
 since there is no simple way to limit it to only .csv or .txt on Mac.
 
+Sometimes, Visual Basic will throw some obscure error message related to
+converting data between types.  So far, whenever this happens, I have been
+able to copy / paste values into a new spreadsheet and then export from the
+new spreadsheet with no problems.  You may also need to exit / restart Excel,
+I don't remember exactly what I needed to do the last time this happened.
+
 <BR>
 
 
