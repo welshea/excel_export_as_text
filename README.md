@@ -192,6 +192,15 @@ existing....
 <BR>
 
 
+### Open As UTF-8
+
+A function/macro is also included to read in .tsv/.txt files as UTF-8, instead
+of the Windows-1252 code page.  This will prevent all of your UTF-8 unicode
+from being corrupted.  Follow the same procedures above to add OpenAsUTF8
+macro buttons.
+
+<BR>
+
 
 ## Usage:
 
