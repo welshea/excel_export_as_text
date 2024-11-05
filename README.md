@@ -262,7 +262,16 @@ Eric A. Welsh (Eric.Welsh@moffitt.org)
 
 See comments above/within vbspeed functions for their respective authors:
 
-  InStrRev, StrReverse:
+  Main author:
+    Eric A. Welsh (Eric.Welsh@moffitt.org)
+
+  Original UTF-8 encoding function:
+    Tim Perkin
+
+  Original CSV QueryTable function:
+    EEM of Stackoverflow
+
+  InStrRev , StrReverse:
     Donald Lessau  (donald@xbeat.net)
 
   Join:
