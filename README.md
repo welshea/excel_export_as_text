@@ -87,7 +87,7 @@ existing....
 <BR>
 
 
-### UTF-8 Unicode support
+## UTF-8 Unicode support
 
 The only way for Excel to normally auto-detect UTF-8 is to include the UTF-8
 BOM in a .csv file.  The BOM must be there, and the filename must end in .csv,
