@@ -118,14 +118,14 @@ A function/macro, OpenAsUTF8, has been included to solve all of these problems.
 It will import a text file as UTF-8, whether or not it has a UTF-8 BOM.
 Files ending in .csv must be opened with a custom function, due to OpenText()
 ignoring most, if not all, of the various options you pass it when a file ends
-in .csv.  The custom function use QueryTable() to load the data in via a
+in .csv.  The custom function uses QueryTable() to load the data in via a
 database query, which actually honors all the options that you set for it.
 Thank you EEM of Stackoverflow!  Files not ending in .csv used to be imported
 using the standard OpenText() function with the appropriate arguments.
-However, our organization's v2402 Build 17328.20708 appears to have introduced
-a new bug into OpenText(), which results in silent corruption of input fields
-and/or crashes.  Due to the new OpenText() bug, *all* text files are opened
-with the same custom function now, regardless of file extension.
+However, our organization's version 2402 Build 17328.20708 appears to have
+introduced a new bug into OpenText(), which results in silent corruption of
+input fields and/or crashes.  Due to the new OpenText() bug, *all* text files
+are opened with the same custom function now, regardless of file extension.
 
 Macro buttons can be added for OpenAsUTF8 by following the same procedures
 detailed below, substituting OpenAsUTF8 for ExportAsText where appropriate.
