@@ -133,6 +133,10 @@ detailed below, substituting OpenAsUTF8 for ExportAsText where appropriate.
 <b><i>!! WARNING -- it is hardcoded to open as UTF-8, even if another BOM is
 present !!</b></i>  I may add smarter support for other BOMs in the future.
 
+If you already have existing files with mojibake corruption, I highly recommend
+the Python ftfy package for recovering the proper Unicode characters:
+(https://pypi.org/project/ftfy/).
+
 <BR>
 
 
