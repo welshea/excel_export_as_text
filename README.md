@@ -114,27 +114,34 @@ problem.  By not outputting UTF-8 BOMs, ExportAsText writes files that Excel
 cannot read back in properly without UTF-8 --> Windows-1252 "mojibake"
 corruption.
 
-A function/macro, OpenAsUTF8, has been included to solve all of these problems.
-It will import a text file as UTF-8, whether or not it has a UTF-8 BOM.
-Files ending in .csv must be opened with a custom function, due to OpenText()
-ignoring most, if not all, of the various options you pass it when a file ends
-in .csv.  The custom function uses QueryTable() to load the data in via a
-database query, which actually honors all the options that you set for it.
-Thank you EEM of Stackoverflow!  Files not ending in .csv used to be imported
-using the standard OpenText() function with the appropriate arguments.
-However, our organization's version 2402 Build 17328.20708 appears to have
-introduced a new bug into OpenText(), which results in silent corruption of
-input fields and/or crashes.  Due to the new OpenText() bug, *all* text files
-are opened with the same custom function now, regardless of file extension.
+<BR>
+
+
+## OpenAsUTF8
+
+A function/macro, OpenAsUTF8, has been included to solve all of the above
+UTF-8 import problems.  It will import a text file as UTF-8, whether or not it
+has a UTF-8 BOM.  Files ending in .csv must be opened with a custom function,
+due to OpenText() ignoring most, if not all, of the various options you pass
+it when a file ends in .csv.  The custom function uses QueryTable() to load
+the data in via a database query, which actually honors all the options that
+you set for it.  Thank you EEM of Stackoverflow!  Files not ending in .csv
+used to be imported using the standard OpenText() function with the
+appropriate arguments.  However, our organization's version 2402 Build
+17328.20708 appears to have introduced a new bug into OpenText(), which
+results in silent corruption of input fields and/or crashes.  Due to the new
+OpenText() bug, *all* text files are opened with the same custom function now,
+regardless of file extension.
 
 The new QueryTable-based function needs to set ActiveWindow.Caption to the
 name of the file, so that it displays properly in the title bar and task bar,
 and so that ExportAsText can detect the proper default file name to export.
 Unfortunately, setting ActiveWindow.Caption disables the normal behavior of
-Excel's native SaveAs changing the caption to that of the newly saved file.
-So, I added additional support to ExportAsText() for .xlsx files, so that
-an OpenAsUTF8 text file can be saved as an Excel workbook and restore proper
-default caption behavior.  Workarounds for workarounds for workarounds....
+Excel's native SaveAs, so that it longer changes the caption to that of the
+newly saved file.  So, I added additional support to ExportAsText() for .xlsx
+files, so that an OpenAsUTF8 imported text file can be saved as an Excel
+workbook and restore proper default caption behavior.  Workarounds for
+workarounds for workarounds....
 
 Macro buttons can be added for OpenAsUTF8 by following the same procedures
 detailed below, substituting OpenAsUTF8 for ExportAsText where appropriate.
