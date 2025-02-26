@@ -127,6 +127,15 @@ introduced a new bug into OpenText(), which results in silent corruption of
 input fields and/or crashes.  Due to the new OpenText() bug, *all* text files
 are opened with the same custom function now, regardless of file extension.
 
+The new QueryTable-based function needs to set ActiveWindow.Caption to the
+name of the file, so that it displays properly in the title bar and task bar,
+and so that ExportAsText can detect the proper default file name to export.
+Unfortunately, setting ActiveWindow.Caption disables the normal behavior of
+Excel's native SaveAs changing the caption to that of the newly saved file.
+So, I added additional support to ExportAsText() for .xlsx files, so that
+an OpenAsUTF8 text file can be saved as an Excel workbook and restore proper
+default caption behavior.  Workarounds for workarounds for workarounds....
+
 Macro buttons can be added for OpenAsUTF8 by following the same procedures
 detailed below, substituting OpenAsUTF8 for ExportAsText where appropriate.
 
