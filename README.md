@@ -1,4 +1,44 @@
-## PURPOSE
+# Quick Overview
+
+This Excel Add-In provides 3 functions, which can be manually added as
+clickable icons to the Excel menu bar and/or title bar with the usual mechanism built into
+Excel for doing that.  There are many ways that Excel can auto-corrupt your
+data, both when reading and writing a text file.  These tools attempt to
+prevent most of the auto-corruption issues that I am aware of.
+
+ExportAsText() safely exports a text file, without changing the spreadsheet
+name, tab name, or file name, without loss of precision due to formatting,
+and with special characters encoded as UTF8.  Tab-delimited text files are
+exported without any comma-delimited escaping, and without any UTF8 BOM, both
+of which are often corrupting when read into other software.
+
+OpenAsUTF8() opens a text file, assuming that any special characters are UTF8
+encoded.  Excel will still auto-format everything as it normally would, which
+can still lead to lots of auto-corruption.
+
+OpenAsUTF8StrictAutoConvert() will "safely" open a text file, without all of
+the auto-formatting that commonly leads to data corruption.  It implements
+most of the rules covered by my earlier Perl script,
+[escape_excel.pl](https://github.com/biodatalab/escape_excel).  See also the
+corresponding [manuscript](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185207).
+A few new rules have been added since publication, as I discovered more ways
+that Excel can auto-corrupt your data.  Escape Excel escapes are automatically
+detected and handled appropriately.
+
+After opening a file with OpenAsUTF8() or OpenAsUTF8StrictAutoConvert(),
+if you want to save it to an Excel .xlsx file, you will want to do so using
+ExportAsText() instead of the built-in Excel SaveAs.  If you use SaveAs,
+then the title bar will not update to the newly saved file name, due to
+my having set a custom window name when loading the file.  Saving it
+with ExportAsText() as file type .xlsx will undo the various workarounds I
+needed to use when opening the file, so that SaveAs and other built-in
+file operations will behave as expected afterwards.
+
+<BR>
+
+
+
+## ExportAsText()
 
 Exports the currently selected Excel worksheet as CSV or tab-delimited text,
 without changing the filename or format of the currently open Excel workbook.
@@ -17,7 +57,7 @@ Windows paths.
 
 
 
-## BACKGROUND
+### BACKGROUND
 
 Excel has the annoying behavior of, when you save an individual worksheet to a
 CSV/text file, it:
@@ -57,7 +97,7 @@ question also summarizes the problem nicely:
 
 
 
-## METHOD
+### METHOD
 
 The subroutine opens an output file requestor, reads through the currently
 active Excel worksheet one row at a time, passes each row to Visual Basic
@@ -87,7 +127,7 @@ existing....
 <BR>
 
 
-## UTF-8 Unicode support
+### UTF-8 Unicode support
 
 The only way for Excel to normally auto-detect UTF-8 is to include the UTF-8
 BOM in a .csv file.  The BOM must be there, and the filename must end in .csv,
@@ -117,7 +157,7 @@ corruption.
 <BR>
 
 
-## OpenAsUTF8
+## OpenAsUTF8()
 
 A function/macro, OpenAsUTF8, has been included to solve all of the above
 UTF-8 import problems.  It will import a text file as UTF-8, whether or not it
@@ -145,8 +185,9 @@ setting ActiveWindow.Caption = False afterwards (False, not "", Microsoft's
 documentation for Window.Caption is incorrect).  Workarounds for workarounds
 for workarounds....
 
-Macro buttons can be added for OpenAsUTF8 by following the same procedures
-detailed below, substituting OpenAsUTF8 for ExportAsText where appropriate.
+Macro buttons can be added for OpenAsUTF8 and/or OpenAsUTF8StrictAutoConvert
+by following the same procedures detailed below, substituting OpenAsUTF8 or
+OpenAsUTF8StrictAutoConvert for ExportAsText where appropriate.
 
 <b><i>!! WARNING -- it is hardcoded to open as UTF-8, even if another BOM is
 present !!</b></i>  I may add smarter support for other BOMs in the future.
@@ -159,9 +200,35 @@ the Python ftfy package for recovering the proper Unicode characters:
 
 
 
-## INSTALLATION
+## OpenAsUTF8StrictAutoConvert()
 
-### Install and activate Add-in on PC:
+OpenAsUTF8StrictAutoConvert() will "safely" open a text file, without all of
+the auto-formatting that commonly leads to data corruption.  It implements
+most of the rules covered by my earlier Perl script,
+[escape_excel.pl](https://github.com/biodatalab/escape_excel).  See also the
+corresponding [manuscript](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185207).
+A few new rules have been added since publication, as I discovered more ways
+that Excel can auto-corrupt your data.  Escape Excel escapes are automatically
+detected and handled appropriately.
+
+It uses .QueryTables.Add to read everyting in as text, then converts numbers
+stored as text into numbers based on some strict rules for which text that
+looks like a number is "safe" to convert to a number.  This is tailored
+towards my use in scientific data analysis, where gene symbols can look like
+dates, well/plate numbers can look like scientific notation, leading zeroes
+need to be kept for various identifiers, etc..  All of this is preserved as
+text, so that no data is corrupted/lost.  If your use case is different, and
+the rules are a bit too strict for you, you'll need to convert those few cases
+into numbers manually.  Or you can use the regular OpenAsUTF8() function, which
+passes through all of the usual (dangerous) Excel auto-formatting behavior.
+
+<BR>
+
+
+
+# INSTALLATION
+
+## Install and activate Add-in on PC:
 
    1) Open ExportAsText.xlsm
    2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
@@ -172,7 +239,7 @@ the Python ftfy package for recovering the proper Unicode characters:
    7) click the OK button to close the Add-ins window
 
 
-#### De-activate Add-in on PC (so that you can install a newer version)
+### De-activate Add-in on PC (so that you can install a newer version)
 
    1) File -> Options (at the very bottom of screen) -> Add-ins
    2) click the Go button next to Manage: Excel Add-ins, near the bottom
@@ -183,7 +250,7 @@ the Python ftfy package for recovering the proper Unicode characters:
 <BR>
 
 
-### Install and activate Add-in on Mac:
+## Install and activate Add-in on Mac:
 
    1) Open ExportAsText.xlsm
    2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
@@ -198,7 +265,7 @@ the Python ftfy package for recovering the proper Unicode characters:
   10) click the OK button to close the Add-ins window
 
 
-#### De-activate Add-in on Mac (so that you can install a newer version)
+### De-activate Add-in on Mac (so that you can install a newer version)
 
    1) Tools -> Excel Add-ins...
    2) un-check the box to the left of Export as Text
@@ -209,7 +276,7 @@ the Python ftfy package for recovering the proper Unicode characters:
 
 
 
-### Add button to the Quick Access Toolbar
+## Add button to the Quick Access Toolbar
 
    1) File -> Options (very bottom of the window) -> Quick Access Toolbar
    2) [right panel] Customize Quick Access Toolbar: For all documents (default)
@@ -231,7 +298,7 @@ the Python ftfy package for recovering the proper Unicode characters:
 <BR>
 
 
-### Add "Export as Text" button to the Ribbon
+## Add "Export as Text" button to the Ribbon
 
    1) File -> Options (very bottom of the window) -> Customize Ribbon
    2) [right panel] Customize the Ribbon: Main Tabs
@@ -263,7 +330,7 @@ the Python ftfy package for recovering the proper Unicode characters:
 <BR>
 
 
-## Usage:
+# Usage:
 
 Click on either the newly added Ribbon or Quick Access Toolbar buttons
 to run the VBA script and export the current worksheet to either CSV or
@@ -281,7 +348,7 @@ I don't remember exactly what I needed to do the last time this happened.
 
 
 
-## AUTHORS
+# AUTHORS
 
 <pre>
 Eric A. Welsh (Eric.Welsh@moffitt.org)
@@ -312,7 +379,7 @@ See comments above/within vbspeed functions for their respective authors:
 
 
 
-## License and Copyright
+# License and Copyright
 
 Copyright (C) 2023, Eric A. Welsh (Eric.Welsh@moffitt.org)<BR>
 Licensed under the zlib license:
