@@ -16,23 +16,25 @@ OpenAsUTF8() opens a text file, assuming that any special characters are UTF8
 encoded.  Excel will still auto-format everything as it normally would, which
 can still lead to lots of auto-corruption.
 
-OpenAsUTF8StrictAutoConvert() will "safely" open a text file, without all of
-the auto-formatting that commonly leads to data corruption.  It implements
-most of the rules covered by my earlier Perl script,
+OpenAsUTF8Strict() will "safely" open a text file, without most of the auto-
+formatting that commonly leads to data corruption.  It implements most of the
+rules covered by my earlier Perl script,
 [escape_excel.pl](https://github.com/biodatalab/escape_excel).  See also the
 corresponding [manuscript](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185207).
 A few new rules have been added since publication, as I discovered more ways
 that Excel can auto-corrupt your data.  Escape Excel escapes are automatically
-detected and handled appropriately.
+detected and handled appropriately.  Results are nearly identical to default
+Escape Excel behavior, with most differences due to how Excel handles " and ""
+within tab-delimited text files.
 
-After opening a file with OpenAsUTF8() or OpenAsUTF8StrictAutoConvert(),
-if you want to save it to an Excel .xlsx file, you will want to do so using
-ExportAsText() instead of the built-in Excel SaveAs.  If you use SaveAs,
-then the title bar will not update to the newly saved file name, due to
-my having set a custom window name when loading the file.  Saving it
-with ExportAsText() as file type .xlsx will undo the various workarounds I
-needed to use when opening the file, so that SaveAs and other built-in
-file operations will behave as expected afterwards.
+After opening a file with OpenAsUTF8() or OpenAsUTF8Strict(), if you want to
+save it to an Excel .xlsx file, you will want to do so using ExportAsText()
+instead of the built-in Excel SaveAs.  If you use SaveAs, then the title bar
+will not update to the newly saved file name, due to my having set a custom
+window name when loading the file.  Saving it with ExportAsText() as file type
+.xlsx will undo the various workarounds I needed to use when opening the file,
+so that SaveAs and other built-in file operations will behave as expected
+afterwards.
 
 <BR>
 
@@ -185,9 +187,9 @@ setting ActiveWindow.Caption = False afterwards (False, not "", Microsoft's
 documentation for Window.Caption is incorrect).  Workarounds for workarounds
 for workarounds....
 
-Macro buttons can be added for OpenAsUTF8 and/or OpenAsUTF8StrictAutoConvert
+Macro buttons can be added for OpenAsUTF8 and/or OpenAsUTF8Strict
 by following the same procedures detailed below, substituting OpenAsUTF8 or
-OpenAsUTF8StrictAutoConvert for ExportAsText where appropriate.
+OpenAsUTF8Strict for ExportAsText where appropriate.
 
 <b><i>!! WARNING -- it is hardcoded to open as UTF-8, even if another BOM is
 present !!</b></i>  I may add smarter support for other BOMs in the future.
@@ -200,16 +202,18 @@ the Python ftfy package for recovering the proper Unicode characters:
 
 
 
-## OpenAsUTF8StrictAutoConvert()
+## OpenAsUTF8Strict()
 
-OpenAsUTF8StrictAutoConvert() will "safely" open a text file, without all of
+OpenAsUTF8Strict() will "safely" open a text file, without most of
 the auto-formatting that commonly leads to data corruption.  It implements
 most of the rules covered by my earlier Perl script,
 [escape_excel.pl](https://github.com/biodatalab/escape_excel).  See also the
 corresponding [manuscript](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185207).
 A few new rules have been added since publication, as I discovered more ways
 that Excel can auto-corrupt your data.  Escape Excel escapes are automatically
-detected and handled appropriately.
+detected and handled appropriately.  Results are nearly identical to default
+Escape Excel behavior, with most differences due to how Excel handles " and ""
+within tab-delimited text files.
 
 It uses .QueryTables.Add to read everyting in as text, then converts numbers
 stored as text into numbers based on some strict rules for which text that
@@ -218,9 +222,9 @@ towards my use in scientific data analysis, where gene symbols can look like
 dates, well/plate numbers can look like scientific notation, leading zeroes
 need to be kept for various identifiers, etc..  All of this is preserved as
 text, so that no data is corrupted/lost.  If your use case is different, and
-the rules are a bit too strict for you, you'll need to convert those few cases
-into numbers manually.  Or you can use the regular OpenAsUTF8() function, which
-passes through all of the usual (dangerous) Excel auto-formatting behavior.
+the rules are a bit too strict for you, you'll need to either convert those
+few cases into numbers manually, disable individual strict rules, or
+uncheck "Apply custom auto-conversions" entirely.
 
 <BR>
 
