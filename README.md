@@ -211,9 +211,9 @@ most of the rules covered by my earlier Perl script,
 corresponding [manuscript](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185207).
 A few new rules have been added since publication, as I discovered more ways
 that Excel can auto-corrupt your data.  Escape Excel escapes are automatically
-detected and handled appropriately.  Results are nearly identical to default
-Escape Excel behavior, with most differences due to how Excel handles " and ""
-within tab-delimited text files.
+detected and handled appropriately.  Results are nearly identical to Escape
+Excel with equivalent options set, with most differences due to how Excel
+handles " and "" within tab-delimited text files.
 
 It uses .QueryTables.Add to read everyting in as text, then converts numbers
 stored as text into numbers based on some strict rules for which text that
@@ -221,10 +221,31 @@ looks like a number is "safe" to convert to a number.  This is tailored
 towards my use in scientific data analysis, where gene symbols can look like
 dates, well/plate numbers can look like scientific notation, leading zeroes
 need to be kept for various identifiers, etc..  All of this is preserved as
-text, so that no data is corrupted/lost.  If your use case is different, and
-the rules are a bit too strict for you, you'll need to either convert those
-few cases into numbers manually, disable individual strict rules, or
-uncheck "Apply custom auto-conversions" entirely.
+text, so that no data is corrupted/lost.
+
+NOTE -- OpenAsUTF8Strict() defaults to treating any number with commas in it
+as text.  You can select the "Numeric commas as numbers" option to accept
+valid #,### style numbers as numbers.  Unchecking both "Numeric commas" options
+attempts to emulate standard Excel auto-conversion behavior, which appears to
+allow for >= 3 digits between commas (instead of exactly 3).
+
+If your use case is different, and the rules are a bit too strict for you,
+you'll need to either convert those few cases into numbers manually, disable
+individual strict rules, or uncheck "Apply custom auto-conversions" entirely.
+If you settle on a different set of default options that work best for you,
+you can edit change the default options as follows:
+
+File -> Options -> Customize Ribbon
+in the right-hand subwindow "Customize the Ribbon": select Main Tabs
+check the empty checkbox next to Developer to enable the Developer menu
+from the Ribbon: Developer -> Visual Basic
+scroll down to VBAProject (ExportAsText.xlam)
+under the Forms folder, double click on UserForm1
+double click on any empty area within the graphical layout editor
+this will display the Visual Basic code underlying the pop-up options menu
+scroll down to the SetDefaultOptions() function
+change the appropriate True/False values to your desired new defaults
+click the floppy disc icon near the top-left to save your changes
 
 <BR>
 
