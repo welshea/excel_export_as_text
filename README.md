@@ -31,9 +31,9 @@ After opening a file with OpenAsUTF8() or OpenAsUTF8Strict(), if you want to
 save it to an Excel .xlsx file, you will want to do so using ExportAsText()
 instead of the built-in Excel SaveAs.  If you use SaveAs, then the title bar
 will not update to the newly saved file name, due to my having set a custom
-window name when loading the file.  Saving it with ExportAsText() as file type
-.xlsx will undo the various workarounds I needed to use when opening the file,
-so that SaveAs and other built-in file operations will behave as expected
+window caption when loading the file.  Saving it with ExportAsText() as file
+type .xlsx will undo the various workarounds I needed to use when opening the
+file, so that SaveAs and other built-in file operations will behave as expected
 afterwards.
 
 <BR>
