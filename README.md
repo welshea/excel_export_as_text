@@ -278,16 +278,11 @@ click the floppy disc icon near the top-left to save your changes
 ## Install and activate Add-in on Mac:
 
    1) Open ExportAsText.xlsm
-   2) File -> Save As -> More Options -> Save as type: Excel Add-in (*.xlam)
+   2) File -> Save As -> Save as type: Excel Add-in (*.xlam)
    3) click the Save button
    4) Tools -> Excel Add-ins...
-   5) click the Browse button in the Add-ins window
-   6) navigate to where you just saved ExportAsText.xlam,
-      which should default to the same location as ExportAsText.xlsm
-   7) select the ExportAsText.xlam file
-   8) click the Open button
-   9) check the box to the left of Export as Text
-  10) click the OK button to close the Add-ins window
+   5) check the box to the left of Export as Text
+   6) click the OK button to close the Add-ins window
 
 
 ### De-activate Add-in on Mac (so that you can install a newer version)
@@ -301,29 +296,56 @@ click the floppy disc icon near the top-left to save your changes
 
 
 
-## Add button to the Quick Access Toolbar
+## Add button to the Quick Access Toolbar:  Windows
 
-   1) File -> Options (very bottom of the window) -> Quick Access Toolbar
-   2) [right panel] Customize Quick Access Toolbar: For all documents (default)
-   3) [left  panel] Choose commands from: Macros
-   4) select ExportAsText.xlam!ExportAsText.Exp...
-   5) click the "Add > >" button to add it to the Quick Access Toolbar
-   6) select the ExportAsText.xlam that you just added
-   7) click the Modify... button
-   8) choose whichever Symbol: icon you like --
+   1) Close the ExportAsText.xlsm file if it is still open
+   2) File -> Options (very bottom of the window) -> Quick Access Toolbar
+   3) [right panel] Customize Quick Access Toolbar: For all documents (default)
+   4) [left  panel] Choose commands from: Macros
+   5) select ExportAsText.xlam!ExportAsText.Exp...
+   6) click the "Add > >" button to add it to the Quick Access Toolbar
+   7) select the ExportAsText.xlam that you just added
+   8) click the Modify... button
+   9) choose whichever Symbol: icon you like --
       I like the outline of a piece of paper with its top-right corner folded,
       with a diagonally down arrow in the bottom-right corner
       (10th icon from the left in my version of Excel)
-   9) click the OK button to close the Modify Button window
-  10) click and hold to drag the newly added "button" to where you want it
+  10) click the OK button to close the Modify Button window
+  11) click and hold to drag the newly added "button" to where you want it
       relative to the other existing "buttons" on the toolbar.
       I left it at the end, after Undo and Redo.
-  11) click the OK button to close the Quick Access Toolbar window
+  12) click the OK button to close the Quick Access Toolbar window
 
 <BR>
 
 
-## Add "Export as Text" button to the Ribbon
+## Add button to the Quick Access Toolbar:  Mac
+
+   1) Close the ExportAsText.xlsm file if it is still open
+   2) Go to the very top of your Excel window, the title bar, where the
+      file name is displayed.  To the left of the file name should be some
+      icons, such as a home icon, floppy disc icons, etc..
+   3) Click on the "..." next to the Repeat/Close circular arrow.
+   4) More Commands...
+   5) [left  panel] Choose commands from: Macros
+   6) select ExportAsText.xlam!ExportAsText.Exp...
+   7) click the "Add > >" button to add it to the Quick Access Toolbar
+   8) select the ExportAsText.xlam that you just added
+   9) click the (...) button towards the bottom of the right-hand pane
+  10) choose whichever Symbol: icon you like --
+      I like the outline of a piece of paper with its top-right corner folded,
+      with a diagonally down arrow in the bottom-right corner
+      (10th icon from the left in my version of Excel)
+  11) click the OK button to close the Modify Button window
+  12) click and hold to drag the newly added "button" to where you want it
+      relative to the other existing "buttons" on the toolbar.
+      I left it at the end, after Undo and Redo.
+  13) click the OK button to close the Quick Access Toolbar window
+
+<BR>
+
+
+## Add "Export as Text" button to the Ribbon:  Windows
 
    1) File -> Options (very bottom of the window) -> Customize Ribbon
    2) [right panel] Customize the Ribbon: Main Tabs
