@@ -25,7 +25,9 @@ A few new rules have been added since publication, as I discovered more ways
 that Excel can auto-corrupt your data.  Escape Excel escapes are automatically
 detected and handled appropriately.  Results are nearly identical to default
 Escape Excel behavior, with most differences due to how Excel handles " and ""
-within tab-delimited text files.
+within tab-delimited text files.  Decimal/thousands numeric separator parsing
+defaults to English-style period/comma, but can be overridden with the
+"Use Excel decimal/thousands" option.
 
 After opening a file with OpenAsUTF8() or OpenAsUTF8Strict(), if you want to
 save it to an Excel .xlsx file, you will want to do so using ExportAsText()
