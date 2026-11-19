@@ -1,3 +1,41 @@
+*** 2026-11-19 -- IMPORTANT CORRECTNESS BUGFIX ***
+
+On or around 2026-08-04, I introduced a correctness bug into
+ExportAsText, affecting -99#0000000 (and similar more-negative patterns),
+as well as some cases of |value| < 0.00099#, where # would cause the first
+3 digits rounded to 2 digits to overflow the first two "99" digits into 100,
+resulting in an exported value 10x the magnitude it was supposed to be
+(the exponent was off by one).  -99#000000 should generally not be encountered
+in biological datasets/databases, so I'm not overly concerned about that one.
+The 0.00099#, 0.000099#, etc. bug is much more worrisome, since that could
+potentially occur occasionally.
+
+The 2026-11-19 update fixes this bug.
+
+Additionally, all previous versions were using built-in VBA functions
+for converting numbers into text to export.  Unfortunately, every single one
+of these functions, as well as general behavior in Excel itself, rounds
+all values to, at most, only 15 significant digits.  Since many values are
+stored internally as double precision, some numbers were losing an additional
+1-2 digits of precision.  This wasn't a correctness issue, just an annoying
+fundamental limit of VBA and Excel, which I had not yet figured out a way to
+overcome.  Today's update fixes this as well.    1.2345678901234567 now exports
+with its full 17 digits of precision, instead of 1.23456789012346.
+
+OpenAsUTF8Strict had already solved the standard Excel bug of *truncating* all
+numbers to at most 15 digits when loading and/or copy/pasting text values.
+Files loaded with OpenAsUTF8Strict are, and always have been, safely rounded to
+full double precision (up to 17 digits).  ExportAsText now completes the fix,
+allowing for complete round-trip preservation of full double precision.  Excel
+will continue to truncate any > 15-digit numbers you paste into it; there's
+nothing that I can do to fix the copy/paste behavior -- you'll need to paste it
+into a text file, then load the text file with OpenAsUTF8Strict in order to
+achieve untruncated full precision data entry.
+
+*** END IMPORTANT CORRECTNESS BUGFIX ***
+
+
+
 # Quick Overview
 
 This Excel Add-In provides 3 functions, which can be manually added as
@@ -113,7 +151,7 @@ Excel can corrupt your data when saving to a text file.
 
 Microsoft has generally done a poor job of porting Excel to Mac over the years,
 especially with regards to VBA, resulting in Mac versions of Excel typically
-missing many useful functions that PC VBA programers rely on.  For example, on
+missing many useful functions that PC VBA programmers rely on.  For example, on
 PC, GetSaveAsFilename() can apply a filter to the allowed output formats
 (.csv, .txt), but attempting to do so on Mac will abort with an error message,
 so Mac users are stuck with scrolling through the whole list of file formats to
@@ -122,8 +160,8 @@ problematic for us, Mac Excel was stuck on VBA5 for ~20 years, which meant that
 it was missing important string processing functions, such as InStrRev(),
 StrReverse(), Join(), and Replace().  Surprisingly, current Office 365 for Mac
 finally supports these functions!  This is good, but it also means that I can't
-just check for Mac vs. PC when declaring the backwards compatability
-functions.  I've supplied optimized backwards compatability functions from
+just check for Mac vs. PC when declaring the backwards compatibility
+functions.  I've supplied optimized backwards compatibility functions from
 http://www.xbeat.net/vbspeed/, which are declared if VBA6 isn't supported.
 Hopefully, this will catch and fix all cases of these functions not
 existing....
@@ -217,7 +255,7 @@ detected and handled appropriately.  Results are nearly identical to Escape
 Excel with equivalent options set, with most differences due to how Excel
 handles " and "" within tab-delimited text files.
 
-It uses .QueryTables.Add to read everyting in as text, then converts numbers
+It uses .QueryTables.Add to read everything in as text, then converts numbers
 stored as text into numbers based on some strict rules for which text that
 looks like a number is "safe" to convert to a number.  This is tailored
 towards my use in scientific data analysis, where gene symbols can look like
